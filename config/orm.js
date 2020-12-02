@@ -10,7 +10,7 @@ const orm = {
           cb(result);
         });
       },
-      create: function(table, cols, vals, cb) {
+      insertOne: function(table, cols, vals, cb) {
         var queryString = "INSERT INTO " + table;
     
         queryString += " (";
@@ -30,7 +30,7 @@ const orm = {
           cb(result);
         });
       },
-      update: function(table,  cb) {
+      updateOne: function(table,  cb) {
         var queryString = "UPDATE " + table;
     
         queryString += " SET ";
@@ -47,7 +47,7 @@ const orm = {
           cb(result);
         });
       },
-      delete: function(table, condition, cb) {
+      deleteOne: function(table, condition, cb) {
         var queryString = "DELETE FROM " + table;
         queryString += " WHERE ";
         queryString += condition;
