@@ -1,12 +1,12 @@
 $(document).ready(function () {
+    const burgers_elem = $("#submittedBurgers")
+    const burgers_elem_two = $("#devouredBurgers")
     $.ajax("/burgers").then(function (data) {
 
         let burgers = data.burgers;
         console.log(burgers);
         let len = burgers.length;
 
-        let burgers_elem = $("#submittedBurgers")
-        let burgers_elem_two = $("#devouredBurgers")
         // if (burgers.devoured===1){
             
         // }
@@ -35,8 +35,10 @@ $(document).ready(function () {
             type: "POST",
             data: newBurger
         }).then(
-            function () {
+            function (response) {
                 console.log("added new burger");
+                console.log(response);
+                burgers_elem.append(newBurger);
 
                 location.reload();
             }
@@ -50,9 +52,9 @@ $(document).ready(function () {
         let id = $(this).data("burgerid");
 
         let updatedBurger = {
-            burger_name: $("#addBurger [name=burger]").val().trim() //??
+            devoured: 1
         };
-
+        console.log(updatedBurger);
         $.ajax("/burgers/" + id, {
             type: "PUT",
             data: updatedBurger
@@ -69,9 +71,9 @@ $(document).ready(function () {
 
     $(document).on("click", ".delBurger", function (event) {
 
-        let id = $(this).data("devouredid");
+        let id = $(this).data("burgerid");
 
-
+        console.log(id);
         $.ajax("/burgers/" + id, {
             type: "DELETE"
         }).then(

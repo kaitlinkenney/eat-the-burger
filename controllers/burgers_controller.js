@@ -7,27 +7,28 @@ app.get("/", function(req, res) {
   });
 
 app.get("/burgers", function(req, res) {
-    burger.selectAll(function(data) {
+    burger.all(function(data) {
       res.json({ burgers: data });
     });
 });
 
 app.post("/burgers", function(req, res) {
-    burger.insertOne([
-      "burger_name", "devoured"
-    ], [
-      req.body.burger_name, req.body.devoured
-    ], function(result) {
-      // Send back the ID of the new quote
-     });
-  });
+  burger.insert([
+    "burger_name", "devoured"
+  ], [
+    req.body.burger_name, req.body.devoured
+  ], function(result) {
+    // Send back the ID of the new quote
+    res.json(result);
+   });
+});
 
 app.put("/burgers/:id", function(req, res) {
     var condition = "id = " + req.params.id;
   
     console.log("condition", condition);
-  
-    burger.updateOne({
+    console.log(req.body);
+    burger.update({
       devoured: req.body.devoured
     }, condition, function(result) {
       if (result.changedRows == 0) {
@@ -41,8 +42,9 @@ app.put("/burgers/:id", function(req, res) {
 
 app.delete("/burgers/:id", function(req, res) {
     var condition = "id = " + req.params.id;
-  
-    burger.deleteOne(condition, function(result) {
+    console.log("condition *****: ", condition);
+    console.log("******");
+    burger.delete(condition, function(result) {
       if (result.affectedRows == 0) {
         // If no rows were changed, then the ID must not exist, so 404
         return res.status(404).end();
