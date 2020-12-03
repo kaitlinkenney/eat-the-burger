@@ -9,11 +9,11 @@ $(document).ready(function () {
 
         for (let i = 0; i < len; i++) {
             if (burgers[i].devoured === 1) {
-                burgers_elem_two.append("<li><p>" + burgers[i].burger_name + "<button data-burgerid='" + burgers[i].id + "' class='delBurger btn btn-danger'>Delete</button></p></li>")
+                burgers_elem_two.append("<li><p>" + burgers[i].burger_name + "  <button data-burgerid='" + burgers[i].id + "' class='delBurger btn btn-danger'>Delete</button></p></li>")
 
             }
             else {
-                burgers_elem.append("<li><p>" + burgers[i].burger_name + "<button data-burgerid='" + burgers[i].id + "' class='devourBurger btn btn-danger'>Devour</button></p></li>")
+                burgers_elem.append("<li><p>" + burgers[i].burger_name + "  <button data-burgerid='" + burgers[i].id + "' class='devourBurger btn btn-danger'>Devour</button></p></li>")
             }
 
         }
