@@ -4,21 +4,18 @@ $(document).ready(function () {
     $.ajax("/burgers").then(function (data) {
 
         let burgers = data.burgers;
-        console.log(burgers);
+
         let len = burgers.length;
 
-        // if (burgers.devoured===1){
-            
-        // }
         for (let i = 0; i < len; i++) {
-            if (burgers[i].devoured===1){
+            if (burgers[i].devoured === 1) {
                 burgers_elem_two.append("<li><p>" + burgers[i].burger_name + "<button data-burgerid='" + burgers[i].id + "' class='delBurger btn btn-danger'>Delete</button></p></li>")
-                console.log("true");
+
             }
-            else{
+            else {
                 burgers_elem.append("<li><p>" + burgers[i].burger_name + "<button data-burgerid='" + burgers[i].id + "' class='devourBurger btn btn-danger'>Devour</button></p></li>")
             }
-            
+
         }
 
     })
@@ -36,8 +33,7 @@ $(document).ready(function () {
             data: newBurger
         }).then(
             function (response) {
-                console.log("added new burger");
-                console.log(response);
+
                 burgers_elem.append(newBurger);
 
                 location.reload();
@@ -47,14 +43,14 @@ $(document).ready(function () {
 
 
     $(document).on("click", ".devourBurger", function (event) {
-        console.log("test123")
+
 
         let id = $(this).data("burgerid");
 
         let updatedBurger = {
             devoured: 1
         };
-        console.log(updatedBurger);
+
         $.ajax("/burgers/" + id, {
             type: "PUT",
             data: updatedBurger
@@ -67,7 +63,7 @@ $(document).ready(function () {
         );
     });
 
-    
+
 
     $(document).on("click", ".delBurger", function (event) {
 
