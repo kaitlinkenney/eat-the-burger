@@ -142,4 +142,4 @@ All the recommended files and directories from the steps above should look like 
 
 screenshot of application: <img width="940" alt="burger screenshot" src="https://user-images.githubusercontent.com/67657449/101078134-b9d22400-3573-11eb-853c-c3f0cf7a4def.png">
 
-link to deployed application: 
+link to deployed application: https://gentle-beyond-17936.herokuapp.com/
