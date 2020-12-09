@@ -21,7 +21,7 @@ $(document).ready(function () {
     })
 
     $("#addBurger").on("submit", function (event) {
-
+       
         event.preventDefault();
 
         let newBurger = {
@@ -51,13 +51,14 @@ $(document).ready(function () {
             devoured: 1
         };
 
+        // Send the PUT request.
         $.ajax("/burgers/" + id, {
             type: "PUT",
             data: updatedBurger
         }).then(
             function () {
                 console.log("updated id ", id);
-
+                // Reload the page to get the updated list
                 location.reload();
             }
         );

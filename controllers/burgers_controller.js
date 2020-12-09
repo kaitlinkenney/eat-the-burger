@@ -1,3 +1,5 @@
+
+// Import the model (burger.js) to use its database functions.
 const burger = require("../models/burger.js");
 const express = require("express");
 const app = express.Router();
@@ -6,6 +8,7 @@ app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
+// Create all our routes and set up logic within those routes where required.
 app.get("/burgers", function (req, res) {
   burger.all(function (data) {
     res.json({ burgers: data });
@@ -51,4 +54,5 @@ app.delete("/burgers/:id", function (req, res) {
   });
 });
 
+// Export routes for server.js to use.
 module.exports = app;

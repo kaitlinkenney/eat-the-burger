@@ -1,5 +1,8 @@
+// Import MySQL connection.
 const connection = require("./connection.js");
 
+// Helper function for SQL syntax.
+// The helper function loops through and creates an array of question marks - ["?", "?", "?"] - and turns it into a string.
 function printQuestionMarks(num) {
   var arr = [];
 
@@ -10,10 +13,11 @@ function printQuestionMarks(num) {
   return arr.toString();
 }
 
-
+// Helper function to convert object key/value pairs to SQL syntax
 function objToSql(ob) {
   var arr = [];
 
+// loop through the keys and push the key/value as a string int arr
   for (var key in ob) {
     var value = ob[key];
 
@@ -28,6 +32,7 @@ function objToSql(ob) {
   return arr.toString();
 }
 
+// Object for all our SQL statement functions.
 const orm = {
   selectAll: function (tableInput, cb) {
     var queryString = "SELECT * FROM " + tableInput + ";";
@@ -87,4 +92,5 @@ const orm = {
   }
 }
 
+// Export the orm object for the model (burger.js).
 module.exports = orm;
