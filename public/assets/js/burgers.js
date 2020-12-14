@@ -7,6 +7,7 @@ $(document).ready(function () {
 
         let len = burgers.length;
 
+        //appends the entered burgers with either a devour button or a delete button depending on devoured status
         for (let i = 0; i < len; i++) {
             if (burgers[i].devoured === 1) {
                 burgers_elem_two.append("<li><p>" + burgers[i].burger_name + "  <button data-burgerid='" + burgers[i].id + "' class='delBurger btn btn-danger'>Delete</button></p></li>")
@@ -65,12 +66,14 @@ $(document).ready(function () {
     });
 
 
-
     $(document).on("click", ".delBurger", function (event) {
 
+        //targets burger that was clicked
         let id = $(this).data("burgerid");
-
+        
         console.log(id);
+
+        //ajax call to delete a burger
         $.ajax("/burgers/" + id, {
             type: "DELETE"
         }).then(

@@ -15,6 +15,7 @@ app.get("/burgers", function (req, res) {
   });
 });
 
+//adds new data in the 'burger_name' and 'devoured columns' of the database
 app.post("/burgers", function (req, res) {
   burger.insert([
     "burger_name", "devoured"
@@ -26,6 +27,7 @@ app.post("/burgers", function (req, res) {
   });
 });
 
+//updates a burger to status: 'devoured'
 app.put("/burgers/:id", function (req, res) {
   var condition = "id = " + req.params.id;
 
@@ -36,11 +38,13 @@ app.put("/burgers/:id", function (req, res) {
       // If no rows were changed, then the ID must not exist, so 404
       return res.status(404).end();
     } else {
+      //displays the updated burger requested through req.params.id
       res.json({ id: req.params.id });
     }
   });
 });
 
+//deletes a burger
 app.delete("/burgers/:id", function (req, res) {
   var condition = "id = " + req.params.id;
 

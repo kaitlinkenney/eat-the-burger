@@ -34,6 +34,7 @@ function objToSql(ob) {
 
 // Object for all our SQL statement functions.
 const orm = {
+  //selects all from the burgers table
   selectAll: function (tableInput, cb) {
     var queryString = "SELECT * FROM " + tableInput + ";";
     connection.query(queryString, function (err, result) {
@@ -43,6 +44,8 @@ const orm = {
       cb(result);
     });
   },
+
+  //adds a new burger into the table
   insertOne: function (table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
 
@@ -61,6 +64,8 @@ const orm = {
       cb(result);
     });
   },
+
+  //updates the burger with the desired id assignment(condition)
   updateOne: function (table, objColVals, condition, cb) {
     var queryString = "UPDATE " + table;
 
@@ -77,6 +82,8 @@ const orm = {
       cb(result);
     });
   },
+
+  //deletes a burger where requested
   deleteOne: function (table, condition, cb) {
     var queryString = "DELETE FROM " + table;
     queryString += " WHERE ";
